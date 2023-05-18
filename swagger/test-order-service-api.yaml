@@ -1,0 +1,29 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Order Service
+  description: "Order Service Application"
+  
+servers:
+  - url: /
+    description: local accessible url
+
+paths:
+  /upCheck:
+    get:
+      tags:
+        - Up Check
+      summary: Welcome API
+      operationId: upCheck
+      responses:
+        200:
+          description: The server is up
+          content:
+            application/json:
+              schema:
+                type: string
+                additionalProperties:
+                  type: string
+                example:
+                  status: Order Service is UP!                 
+  

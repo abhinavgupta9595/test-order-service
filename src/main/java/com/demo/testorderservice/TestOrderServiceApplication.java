@@ -8,7 +8,6 @@ public class TestOrderServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TestOrderServiceApplication.class, args);
-		System.out.println("Hello");
 	}
 
 }
