@@ -2,6 +2,7 @@ package com.demo.testorderservice.config;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -19,16 +20,26 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 
+/**
+ * 
+ * @author Abhinav
+ * Config class for Swagger
+ */
 @Configuration
 @EnableOpenApi
-@EnableWebMvc
 public class SwaggerConfig implements WebMvcConfigurer{
 
 	private static final String[] SUBMIT_METHODS = new String[]
 			{"get", "post", "put", "delete", "patch", "head"};
-	private static final String TITLE = "Order Service";
-	private static final String DESCRIPTION = " Order Service to create Customer Orders and get Order Status";
-	private static final String VERSION = "1.0.0";
+	
+	@Value("${info.application.name}")
+	private String TITLE;
+	
+	@Value("${info.application.description}")
+	private String DESCRIPTION;
+	
+	@Value("${info.application.version}")
+	private String VERSION;
 	
 	@Bean
 	public UiConfiguration uiConfig() {
@@ -52,4 +63,5 @@ public class SwaggerConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
+	
 }
